@@ -17,12 +17,12 @@
 - A web browser (like Edge).
 - An internet connection (optional).
 
-## Usage
-# Select a Test:
+# Usage
+## Select a Test:
 
 Choose a test or topic from the dropdown menu.
 
-# Translate the Phrase:
+## Translate the Phrase:
 
 Read the phrase and type your translation in the input box.
 
@@ -30,19 +30,19 @@ Read the phrase and type your translation in the input box.
 
 Click Submit to check if your translation is correct.
 
-# Use Hints:
+## Use Hints:
 
 If you're stuck, click Hint for a clue.
 
-# Track Your Progress:
+## Track Your Progress:
 
 View your total attempts, success rate, and progress bar.
 
-# Reset or Give Up:
+## Reset or Give Up:
 
 Use the Reset button to start over or Give Up to see the correct answer.
 
-## Example JSON Data
+# Example JSON Data
 
 Here’s an example of how the `projects.json` file is structured:
 
