@@ -1,7 +1,7 @@
 # RepeteFloent
 
 **RepeteFloent** is a language learning tool designed to help you master new skills through **repetition**. Whether you're practicing vocabulary, phrases, or grammar, RepeteFloent makes it easy to reinforce your learning by repeating exercises until they stick.
-
+(Made mostly by AI ((Deepseek)) )
 ## Features
 
 - **Repetition-Based Learning**
