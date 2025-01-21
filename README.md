@@ -48,11 +48,11 @@ Here’s an example of how the `projects.json` file is structured:
 
 ```json
 {
-        "title": "Basic Words",
-        "phrases": [
-            { "text": "Haus", "translation": "house", "from": "German", "to": "English" },
-            { "text": "Apfel", "translation": "apple", "from": "German", "to": "English" },
-            { "text": "Buch", "translation": "book", "from": "German", "to": "English" },
-        ]
-    },
+"title": "Basic Words",
+"phrases": [
+    { "text": "Haus", "translation": "house", "from": "German", "to": "English" },
+    { "text": "Apfel", "translation": "apple", "from": "German", "to": "English" },
+    { "text": "Buch", "translation": "book", "from": "German", "to": "English" },
+]
+},
 ```
