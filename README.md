@@ -2,8 +2,6 @@
 
 **RepeteFloent** is a language learning tool designed to help you master new skills through **repetition**. Whether you're practicing vocabulary, phrases, or grammar, RepeteFloent makes it easy to reinforce your learning by repeating exercises until they stick.
 
-### --------------------------------------------------------------------------------------------
-
 ## Features
 
 - **Repetition-Based Learning**
@@ -13,15 +11,11 @@
 - **Dark Mode**
 - **Timer Integration**
 
-### --------------------------------------------------------------------------------------------
-
 ## Getting Started
 
 ### Prerequisites
 - A web browser (like Edge).
 - An internet connection (optional).
-
-### --------------------------------------------------------------------------------------------
 
 ## Usage
 # Select a Test:
@@ -47,8 +41,6 @@ View your total attempts, success rate, and progress bar.
 # Reset or Give Up:
 
 Use the Reset button to start over or Give Up to see the correct answer.
-
-### --------------------------------------------------------------------------------------------
 
 ## Example JSON Data
 
