@@ -18,27 +18,27 @@
 - An internet connection (optional).
 
 # Usage
-## Select a Test:
+### Select a Test:
 
 Choose a test or topic from the dropdown menu.
 
-## Translate the Phrase:
+### Translate the Phrase:
 
 Read the phrase and type your translation in the input box.
 
-# Check Your Answer:
+### Check Your Answer:
 
 Click Submit to check if your translation is correct.
 
-## Use Hints:
+### Use Hints:
 
 If you're stuck, click Hint for a clue.
 
-## Track Your Progress:
+### Track Your Progress:
 
 View your total attempts, success rate, and progress bar.
 
-## Reset or Give Up:
+### Reset or Give Up:
 
 Use the Reset button to start over or Give Up to see the correct answer.
 
@@ -47,42 +47,12 @@ Use the Reset button to start over or Give Up to see the correct answer.
 Here’s an example of how the `projects.json` file is structured:
 
 ```json
-[
-  {
-    "_id": "exercise_1",
-    "title": "Greetings",
-    "description": "Practice common greetings in your target language.",
-    "phrases": [
-      {
-        "text": "Hello",
-        "translation": "Hola"
-      },
-      {
-        "text": "Goodbye",
-        "translation": "Adiós"
-      }
-    ],
-    "tags": ["Greetings", "Beginner"],
-    "category": ["Vocabulary"]
-  },
-  {
-    "_id": "exercise_2",
-    "title": "Numbers",
-    "description": "Practice numbers in your target language.",
-    "phrases": [
-      {
-        "text": "One",
-        "translation": "Uno"
-      },
-      {
-        "text": "Two",
-        "translation": "Dos"
-      }
-    ],
-    "tags": ["Numbers", "Beginner"],
-    "category": ["Vocabulary"]
-  }
-]
+{
+        "title": "Basic Words",
+        "phrases": [
+            { "text": "Haus", "translation": "house", "from": "German", "to": "English" },
+            { "text": "Apfel", "translation": "apple", "from": "German", "to": "English" },
+            { "text": "Buch", "translation": "book", "from": "German", "to": "English" },
+        ]
+    },
 ```
-
-### --------------------------------------------------------------------------------------------
