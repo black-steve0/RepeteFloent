@@ -1,0 +1,321 @@
+body {
+overflow: hidden;
+font-family: Arial, sans-serif;
+text-align: center;
+display: flex;
+flex-direction: row;
+margin: 0;
+padding: 0;
+background-color: #f4f4f9;
+color: #333;
+}
+input {
+outline: none;
+}
+iframe {
+width: 20%;
+height: 100%;
+}
+.container {
+width: 600px;
+margin: 50px auto;
+padding: 20px;
+background: #fff;
+border-radius: 10px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+h1 {
+font-size: 2.5rem;
+margin-bottom: 20px;
+color: #4a90e2;
+}
+#text-to-translate {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 20px 0;
+    color: white;
+}
+.phrase {
+font-size: 2rem;
+color: #4a90e2;
+}
+#user-input {
+width: 80%;
+padding: 10px;
+font-size: 1rem;
+margin: 10px 0;
+border: 2px solid #ddd;
+border-radius: 5px;
+}
+.letter-buttons {
+margin: 10px 0;
+}
+.letter-buttons button {
+margin: 5px;
+padding: 10px 15px;
+font-size: 1rem;
+background: #4a90e2;
+color: #fff;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+}
+.letter-buttons button:hover {
+background: #357abd;
+}
+#give-up-button,
+#submit-button,
+#hint-button,
+#reset-button {
+padding: 10px 20px;
+font-size: 1rem;
+margin: 10px 5px;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+}
+#give-up-button {
+background: #6c757d; /* Grey color */
+color: #fff; /* White text */
+}
+#submit-button {
+background: #4a90e2;
+color: #fff;
+}
+#submit-button:disabled {
+background: #ccc;
+cursor: not-allowed;
+}
+#submit-button:hover {
+background: #357abd;
+}
+#hint-button {
+background: #ffc107;
+color: #333;
+}
+#hint-button:hover {
+background: #e0a800;
+}
+#reset-button {
+background: #dc3545;
+color: #fff;
+}
+#reset-button:hover {
+background: #c82333;
+}
+#result {
+margin-top: 20px;
+min-height: 20px;
+max-height: 20px;
+font-size: 1.2rem;
+font-weight: bold;
+}
+.success {
+color: #28a745;
+}
+.error {
+color: #dc3545;
+}
+.progress-bar {
+width: 100%;
+background: #ddd;
+border-radius: 5px;
+margin: 20px 0;
+}
+.progress {
+height: 10px;
+background: #28a745;
+border-radius: 5px;
+width: 0;
+}
+.incorrect {
+background: #dc3545;
+}
+.stats {
+display: flex;
+justify-content: space-around;
+margin: 20px 0;
+}
+.stats p {
+margin: 0;
+font-size: 1.1rem;
+}
+#hint-text {
+margin-top: 10px;
+font-size: 1rem;
+color: #666;
+}
+#test-select {
+padding: 10px;
+font-size: 1rem;
+border: 2px solid #ddd;
+border-radius: 5px;
+margin-bottom: 20px;
+}
+body.dark-mode #test-select {
+border: 2px solid #666;
+}
+body.dark-mode #user-input {
+border: 2px solid #666;
+}
+/* Hide the settings menu by default */
+.hidden {
+display: none;
+}
+
+/* Settings Menu Styling */
+#settings-menu {
+padding: 20px;
+text-align: left;
+}
+
+#settings-menu h2 {
+margin-bottom: 20px;
+color: #4a90e2;
+}
+
+#settings-menu label {
+display: block;
+margin: 10px 0;
+font-size: 1.1rem;
+}
+
+#settings-menu input[type="checkbox"] {
+margin-right: 10px;
+}
+
+/* Settings Button Styling */
+#settings-button {
+margin-right: 150%;
+padding: 10px;
+font-size: 1.5rem;
+background: none;
+border: none;
+cursor: pointer;
+}
+
+#settings-button:hover {
+color: #4a90e2;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+background-color: #1e1e1e;
+color: #ffffff;
+}
+
+body.dark-mode .container {
+background-color: #2d2d2d;
+color: #ffffff;
+}
+
+body.dark-mode #settings-menu {
+background-color: #2d2d2d;
+color: #ffffff;
+}
+
+body.dark-mode input[type="text"],
+body.dark-mode select {
+background-color: #3d3d3d;
+color: #ffffff;
+border-color: #555;
+}
+
+body.dark-mode button {
+background-color: #4a90e2;
+color: #ffffff;
+}
+
+#text-to-translate :chil{
+    color: white;
+}
+
+body.dark-mode button:hover {
+background-color: #357abd;
+}
+
+
+/* 
+Timer
+ */
+
+/* Timer Display */
+#timer-display {
+    font-size: 2rem;
+    text-align: left;
+    font-weight: bold;
+    margin: 0px 0;
+    color: #4a90e2;
+}
+
+/* Progress Bar */
+.progress-bar {
+    width: 100%;
+    background: #ddd;
+    border-radius: 5px;
+    margin: 20px 0;
+    overflow: hidden;
+}
+
+.progress {
+    height: 10px;
+    background: #28a745;
+    width: 100%;
+    transition: width 0.5s linear;
+}
+
+/* Timer Controls */
+.timer-controls {
+    padding-top:10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 3px;
+}
+
+.timer-controls button {
+    padding: 5px 5px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background: #4a90e2;
+    color: #fff;
+}
+
+.timer-controls button:hover {
+    background: #357abd;
+}
+
+.timer-controls button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+/* Dark Mode Support */
+body.dark-mode #timer-display {
+    color: #4a90e2;
+}
+
+body.dark-mode .progress-bar {
+    background: #444;
+}
+
+body.dark-mode .progress {
+    background: #28a745;
+}
+
+body.dark-mode .timer-controls input {
+    background: #3d3d3d;
+    color: #fff;
+    border-color: #666;
+}
+
+body.dark-mode .timer-controls button {
+    background: #4a90e2;
+    color: #fff;
+}
+
+body.dark-mode .timer-controls button:hover {
+    background: #357abd;
+}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Translation Practice</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+  </head>
+  <body>
+    <div class="container" style="position: fixed; left: 25%">
+      <!-- Settings Button -->
+      <button id="settings-button">⚙️</button>
+
+      <!-- Main Content (initially visible) -->
+      <div id="main-content">
+        <h1>Translation Practice</h1>
+        <select id="test-select"></select>
+        <p id="instruction">Translate the following:</p>
+        <div id="text-to-translate"></div>
+        <div id="context"></div>
+        <p id="result"></p>
+        <input
+          type="text"
+          id="user-input"
+          placeholder="Your translation"
+          autocomplete="off"
+        />
+        <br /><br />
+        <div class="letter-buttons">
+          <button onclick="insertLetter('ä')">ä</button>
+          <button onclick="insertLetter('ö')">ö</button>
+          <button onclick="insertLetter('ü')">ü</button>
+          <button onclick="insertLetter('ß')">ß</button>
+        </div>
+        <br />
+        <button id="submit-button" onclick="checkTranslation()" disabled>
+          Submit
+        </button>
+        <button id="hint-button" onclick="showHint()">Hint</button>
+        <button id="reset-button" onclick="resetGame()">Reset</button>
+        <button id="give-up-button" onclick="giveUp()">Give Up</button>
+        <p id="hint-text"></p>
+        <p>Total Attempts: <span id="total-count">0</span></p>
+        <p>Percentage Correct: <span id="percentage-correct">0%</span></p>
+        <div class="progress-bar" id="progress-background">
+          <div class="progress" id="progress-bar"></div>
+        </div>
+        <div class="stats">
+          <p>Successful Attempts: <span id="success-count">0</span></p>
+          <p>Failed Attempts: <span id="fail-count">0</span></p>
+        </div>
+      </div>
+
+      <div id="settings-menu" class="hidden">
+        <h2>Settings</h2>
+        <label>
+          <input type="checkbox" id="dark-mode-toggle" /> Dark Mode
+        </label>
+        <br />
+        <label>
+          <input type="checkbox" id="timer-toggle" /> Enable Timer
+        </label>
+        <br />
+        <label>
+          <input type="checkbox" id="hint-toggle" /> Show Hints by Default
+        </label>
+        <br />
+      </div>
+    </div>
+    <div
+      style="
+        display: flex;
+        position: fixed;
+        left: 63%;
+        flex-direction: column;
+        gap: 15px;
+      "
+    >
+      <div class="container" style="max-width: 17rem; height: 7rem; margin-bottom: 0px;">
+        <div id="timer-display">05:00</div>
+        <div class="timer-controls">
+          <button id="start-timer">Start</button>
+          <button id="pause-timer">Pause</button>
+          <button id="reset-timer">Reset</button>
+          <button id="mode-toggle">Stopwatch</button>
+        </div>
+        <div class="progress-bar">
+          <div id="timer-progress" class="progress"></div>
+        </div>
+      </div>
+      <div class="container" style="max-width: 17rem; height: 7rem; margin-top: 0px;">
+        Last answer
+        <h2 id="last-answer" style="color:green; margin:0; margin-bottom: 7%;"></h2>
+        Counter word
+        <h2 id="last-question" style="color:red; margin:0;"></h2>
+      </div>
+    </div>
+    <script src="javascript.js"></script>
+  </body>
+</html>
