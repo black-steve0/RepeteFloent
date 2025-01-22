@@ -1,4 +1,4 @@
-let phraseGroups = [];
+let phraseGroups = []; 
 let totalAttempts = 0;
 let currentGroupIndex = 0;
 let currentItemIndex = 0;
