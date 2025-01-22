@@ -128,7 +128,9 @@ const correctTranslation = isTranslatingToGerman
     : item.translation.toLowerCase();
 
 if (userInput === correctTranslation) {
-    document.getElementById("last-answer").textContent = correctTranslation;
+    document.getElementById("last-answer").textContent = isTranslatingToGerman
+    ? item.text.toLowerCase()
+    : item.translation.toLowerCase();
     document.getElementById("last-question").textContent = document.getElementById("text-to-translate").textContent;
     document.getElementById("result").textContent = "Correct!";
     document.getElementById("result").className = "success";
@@ -149,6 +151,10 @@ if (userInput === correctTranslation) {
     failedPhrases.add(phraseKey);
     }
     if (attempts >= 2) {
+    document.getElementById("last-answer").textContent = isTranslatingToGerman
+    ? item.text.toLowerCase()
+    : item.translation.toLowerCase();
+    document.getElementById("last-question").textContent = document.getElementById("text-to-translate").textContent;
     totalAttempts++;
     failCount++;
     document.getElementById(
@@ -183,9 +189,6 @@ document.getElementById("submit-button").disabled = true;
 }
 
 function giveUp() {
-document
-    .getElementById("progress-background")
-    .classList.add("incorrect");
 totalAttempts++;
 failCount++;
 document.getElementById("fail-count").textContent = failCount;
@@ -195,6 +198,13 @@ const correctTranslation = isTranslatingToGerman
     ? item.text
     : item.translation;
 
+    document.getElementById("last-answer").textContent = isTranslatingToGerman
+    ? item.text.toLowerCase()
+    : item.translation.toLowerCase();
+    document.getElementById("last-question").textContent = document.getElementById("text-to-translate").textContent;
+document
+    .getElementById("progress-background")
+    .classList.add("incorrect");
 // Count as a failed attempt
 const phraseKey = isTranslatingToGerman ? item.text : item.translation;
 if (!failedPhrases.has(phraseKey)) {
