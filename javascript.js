@@ -1,4 +1,4 @@
-let phraseGroups = []; 
+let phraseGroups = [];
 let totalAttempts = 0;
 let currentGroupIndex = 0;
 let currentItemIndex = 0;
@@ -103,11 +103,6 @@ if (isTranslatingToGerman) {
 document.getElementById("context").textContent = item.additional;
 
 const phraseKey = isTranslatingToGerman ? item.text : item.translation;
-const incorrectAttempts = phraseAttempts[phraseKey] || 0;
-textElement.style.color = `rgb(${Math.min(
-    255,
-    incorrectAttempts * 50
-)}, 0, 0)`;
 
 attempts = 0;
 document.getElementById("hint-text").textContent = "";
@@ -297,21 +292,17 @@ document
 .getElementById("test-select")
 .addEventListener("change", switchTest);
 
-toggleSettings = 1;
+function switchTab(index) {
+    const pages = ["settings-menu",  "bank-menu", "main-content"];
 
-document
-.getElementById("settings-button")
-.addEventListener("click", () => {
-    if (toggleSettings) {
-    toggleSettings--;
-    document.getElementById("main-content").classList.add("hidden");
-    document.getElementById("settings-menu").classList.remove("hidden");
-    } else {
-    toggleSettings++;
-    document.getElementById("settings-menu").classList.add("hidden");
-    document.getElementById("main-content").classList.remove("hidden");
-    }
-});
+    for (i=0; i<pages.length; i++) {
+        if (index !== i) {
+            document.getElementById(pages[i]).classList.add("hidden");
+        } else {
+            document.getElementById(pages[i]).classList.remove("hidden");
+        }
+    };
+}
 
 // Dark Mode Toggle
 document
@@ -319,21 +310,15 @@ document
 .addEventListener("change", (event) => {
     document.body.classList.toggle("dark-mode", event.target.checked);
     localStorage.setItem("darkMode", event.target.checked);
+    
+const textElement = document.getElementById("text-to-translate");
+if (localStorage.getItem("darkMode") === "true") {
+textElement.style.color = `rgb(255, 255, 255)`;
+} else {
+textElement.style.color = `rgb(0, 0, 0)`;
+}
 });
 
-// Timer Toggle
-document
-.getElementById("timer-toggle")
-.addEventListener("change", (event) => {
-    localStorage.setItem("timerEnabled", event.target.checked);
-});
-
-// Hint Toggle
-document
-.getElementById("hint-toggle")
-.addEventListener("change", (event) => {
-    localStorage.setItem("hintEnabled", event.target.checked);
-});
 
 // Load Saved Settings
 function loadSettings() {
@@ -342,13 +327,12 @@ const darkMode = localStorage.getItem("darkMode") === "true";
 document.getElementById("dark-mode-toggle").checked = darkMode;
 document.body.classList.toggle("dark-mode", darkMode);
 
-// Timer
-const timerEnabled = localStorage.getItem("timerEnabled") === "true";
-document.getElementById("timer-toggle").checked = timerEnabled;
-
-// Hints
-const hintEnabled = localStorage.getItem("hintEnabled") === "true";
-document.getElementById("hint-toggle").checked = hintEnabled;
+const textElement = document.getElementById("text-to-translate");
+if (localStorage.getItem("darkMode") === "true") {
+    textElement.style.color = `rgb(255, 255, 255)`;
+    } else {
+    textElement.style.color = `rgb(0, 0, 0)`;
+    }
 }
 
 // Apply settings on page load
@@ -469,3 +453,52 @@ modeToggleButton.addEventListener('click', toggleMode);
 
 // Initialize the timer with a default duration
 setTimerDuration(totalTime);
+
+document.addEventListener('DOMContentLoaded', function () {
+    const tabs = document.querySelectorAll('.tab-button');
+    const highlight = document.querySelector('.highlight');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function () {
+            // Remove the 'selected' class from all tabs
+            tabs.forEach(t => t.classList.remove('selected'));
+            // Add the 'selected' class to the clicked tab
+            this.classList.add('selected');
+
+            // Move the highlight to the selected tab
+            const tabWidth = this.offsetWidth;
+            const tabLeft = this.offsetLeft;
+            highlight.style.width = `${tabWidth+10}px`;
+            highlight.style.left = `${tabLeft-5}px`;
+        });
+
+        // Optional: Add hover effect for the highlight
+        tab.addEventListener('mouseenter', function () {
+            if (!this.classList.contains('selected')) {
+                const tabWidth = this.offsetWidth;
+                const tabLeft = this.offsetLeft;
+                highlight.style.width = `${tabWidth+10}px`;
+                highlight.style.left = `${tabLeft-5}px`;
+            }
+        });
+
+        tab.addEventListener('mouseleave', function () {
+            if (!this.classList.contains('selected')) {
+                const selectedTab = document.querySelector('.tab-button.selected');
+                const tabWidth = selectedTab.offsetWidth;
+                const tabLeft = selectedTab.offsetLeft;
+                highlight.style.width = `${tabWidth+10}px`;
+                highlight.style.left = `${tabLeft-5}px`;
+            }
+        });
+    });
+
+    // Initialize the highlight position for the default selected tab
+    const selectedTab = document.querySelector('.tab-button.selected');
+    if (selectedTab) {
+        const tabWidth = selectedTab.offsetWidth;
+        const tabLeft = selectedTab.offsetLeft;
+        highlight.style.width = `${tabWidth+10}px`;
+        highlight.style.left = `${tabLeft-5}px`;
+    }
+});

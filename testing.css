@@ -1,0 +1,220 @@
+/* Word Bank Styling */
+#word-bank-list {
+    margin: 20px 0;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.word-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.word-item button {
+    background: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.word-item button:hover {
+    background: #c82333;
+}
+
+/* Add Word Form */
+#add-word-form {
+    margin-top: 20px;
+    text-align: center;
+    padding: 15px;
+    background: #fff; /* White background for the form */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+#add-word-form input {
+    padding: 10px;
+    margin: 10px 0; /* Increased margin for better spacing */
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    width: 80%;
+    max-width: 300px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#add-word-form input:focus {
+    border-color: #4a90e2; /* Highlight input on focus */
+    box-shadow: 0 0 5px rgba(74, 144, 226, 0.5); /* Glow effect on focus */
+    outline: none;
+}
+
+/* Add Word Form Buttons */
+#add-word-form button {
+    padding: 10px 20px;
+    background: #4a90e2; /* Primary blue color */
+    color: #fff; /* White text */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin: 10px 5px; /* Better spacing between buttons */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#add-word-form button:hover {
+    background: #357abd; /* Darker blue on hover */
+    transform: scale(1.05); /* Slight scale effect on hover */
+}
+
+#add-word-form button:active {
+    background: #2a5f8a; /* Even darker blue on click */
+    transform: scale(0.95); /* Slight shrink effect on click */
+}
+
+/* Add Word Button */
+#add-word-button {
+    padding: 10px 20px;
+    background: #4a90e2; /* Primary blue color */
+    color: #fff; /* White text */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin: 10px 0; /* Better spacing */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#add-word-button:hover {
+    background: #357abd; /* Darker blue on hover */
+    transform: scale(1.05); /* Slight scale effect on hover */
+}
+
+#add-word-button:active {
+    background: #2a5f8a; /* Even darker blue on click */
+    transform: scale(0.95); /* Slight shrink effect on click */
+}
+
+/* Dark Mode Styles */
+body.dark-mode #add-word-form {
+    background: #2d2d2d; /* Dark background for the form */
+    border: 1px solid #444; /* Subtle border for dark mode */
+}
+
+body.dark-mode #add-word-form input {
+    background-color: #3d3d3d; /* Dark background for inputs */
+    color: #fff; /* White text */
+    border-color: #666; /* Darker border */
+}
+
+body.dark-mode #add-word-form input:focus {
+    border-color: #6c757d; /* Highlight input on focus in dark mode */
+    box-shadow: 0 0 5px rgba(108, 117, 125, 0.5); /* Glow effect on focus */
+}
+
+body.dark-mode #add-word-form button,
+body.dark-mode #add-word-button {
+    background: #6c757d; /* Grey color for dark mode */
+    color: #fff; /* White text */
+}
+
+body.dark-mode #add-word-form button:hover,
+body.dark-mode #add-word-button:hover {
+    background: #5a6268; /* Darker grey on hover */
+}
+
+body.dark-mode #add-word-form button:active,
+body.dark-mode #add-word-button:active {
+    background: #495057; /* Even darker grey on click */
+}
+
+/* Back Button */
+#back-button {
+    padding: 10px 20px;
+    background: #6c757d; /* Grey color */
+    color: #fff; /* White text */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin: 10px 0; /* Spacing */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#back-button:hover {
+    background: #5a6268; /* Darker grey on hover */
+}
+
+#back-button:active {
+    background: #495057; /* Even darker grey on click */
+}
+
+/* Dark Mode Styles */
+body.dark-mode #back-button {
+    background: #4a90e2; /* Blue color for dark mode */
+    color: #fff; /* White text */
+}
+
+body.dark-mode #back-button:hover {
+    background: #357abd; /* Darker blue on hover */
+}
+
+body.dark-mode #back-button:active {
+    background: #2a5f8a; /* Even darker blue on click */
+}
+
+#practice-words-button {
+    font-size: 1rem;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#practice-words-button:hover {
+    background: #218838;
+}
+
+/* Practice Mode Styling */
+#text-to-translate.practice-mode {
+    font-size: 2rem;
+    color: #4a90e2;
+    font-weight: bold;
+}
+
+#instruction.practice-mode {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+#result.practice-mode {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+/* Practice Mode Styling */
+#text-to-translate.practice-mode {
+    font-size: 2rem;
+    color: #4a90e2;
+    font-weight: bold;
+}
+
+#instruction.practice-mode {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+#result.practice-mode {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
