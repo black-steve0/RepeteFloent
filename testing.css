@@ -68,12 +68,10 @@
 
 #add-word-form button:hover {
     background: #357abd; /* Darker blue on hover */
-    transform: scale(1.05); /* Slight scale effect on hover */
 }
 
 #add-word-form button:active {
     background: #2a5f8a; /* Even darker blue on click */
-    transform: scale(0.95); /* Slight shrink effect on click */
 }
 
 /* Add Word Button */
@@ -91,12 +89,10 @@
 
 #add-word-button:hover {
     background: #357abd; /* Darker blue on hover */
-    transform: scale(1.05); /* Slight scale effect on hover */
 }
 
 #add-word-button:active {
     background: #2a5f8a; /* Even darker blue on click */
-    transform: scale(0.95); /* Slight shrink effect on click */
 }
 
 /* Dark Mode Styles */
@@ -207,14 +203,234 @@ body.dark-mode #back-button:active {
     font-weight: bold;
 }
 
-#instruction.practice-mode {
+#practice-instruction.practice-mode {
     font-size: 1.2rem;
     color: #666;
 }
 
-#result.practice-mode {
+#practice-result.practice-mode {
     font-size: 1.5rem;
     font-weight: bold;
     margin-top: 20px;
+}
+
+
+/* Practice Interface Styling */
+#practice-interface {
+    text-align: center;
+    padding: 20px;
+    padding-top: 0px;
+    background: #fff; /* White background */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+#practice-interface h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #4a90e2; /* Primary blue color */
+}
+
+#practice-instruction {
+    font-size: 1.2rem;
+    color: #333; /* Dark text */
+    margin-bottom: 20px;
+}
+
+#practice-text-to-translate {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #4a90e2; /* Primary blue color */
+    margin: 20px 0;
+}
+
+#practice-context {
+    font-size: 1rem;
+    color: #666; /* Grey text */
+    margin-bottom: 20px;
+}
+
+#practice-result {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+#practice-result.success {
+    color: #28a745; /* Green for success */
+}
+
+#practice-result.error {
+    color: #dc3545; /* Red for error */
+}
+
+#practice-user-input {
+    width: 80%;
+    padding: 10px;
+    font-size: 1rem;
+    margin: 10px 0;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#practice-user-input:focus {
+    border-color: #4a90e2; /* Highlight input on focus */
+    box-shadow: 0 0 5px rgba(74, 144, 226, 0.5); /* Glow effect on focus */
+    outline: none;
+}
+
+.practice-letter-buttons {
+    margin: 10px 0;
+}
+
+.practice-letter-buttons button {
+    margin: 5px;
+    padding: 10px 15px;
+    font-size: 1rem;
+    background: #4a90e2; /* Primary blue color */
+    color: #fff; /* White text */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.practice-letter-buttons button:hover {
+    background: #357abd; /* Darker blue on hover */
+}
+
+.practice-letter-buttons button:active {
+    background: #2a5f8a; /* Even darker blue on click */
+}
+
+#practice-submit-button,
+#practice-hint-button,
+#practice-reset-button,
+#practice-give-up-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    margin: 10px 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#practice-submit-button {
+    background: #4a90e2; /* Primary blue color */
+    color: #fff; /* White text */
+}
+
+#practice-submit-button:disabled {
+    background: #ccc; /* Grey for disabled state */
+    cursor: not-allowed;
+}
+
+#practice-submit-button:hover {
+    background: #357abd; /* Darker blue on hover */
+}
+
+#practice-hint-button {
+    background: #ffc107; /* Yellow for hint */
+    color: #333; /* Dark text */
+}
+
+#practice-hint-button:hover {
+    background: #e0a800; /* Darker yellow on hover */
+}
+
+#practice-reset-button {
+    background: #dc3545; /* Red for reset */
+    color: #fff; /* White text */
+}
+
+#practice-reset-button:hover {
+    background: #c82333; /* Darker red on hover */
+}
+
+#practice-give-up-button {
+    background: #6c757d; /* Grey for give up */
+    color: #fff; /* White text */
+}
+
+#practice-give-up-button:hover {
+    background: #5a6268; /* Darker grey on hover */
+}
+
+#practice-hint-text {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #666; /* Grey text */
+}
+
+.practice-progress-bar {
+    width: 100%;
+    background: #ddd; /* Light grey background */
+    border-radius: 5px;
+    margin: 20px 0;
+    overflow: hidden;
+}
+
+.practice-progress {
+    height: 10px;
+    background: #28a745; /* Green for progress */
+    width: 0;
+    transition: width 0.5s ease;
+}
+
+.practice-stats {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.practice-stats p {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #333; /* Dark text */
+}
+
+/* Dark Mode Styles */
+body.dark-mode #practice-interface {
+    background: #2d2d2d; /* Dark background */
+    color: #fff; /* White text */
+}
+
+body.dark-mode #practice-interface h2 {
+    color: #4a90e2; /* Primary blue color */
+}
+
+body.dark-mode #practice-instruction,
+body.dark-mode #practice-context,
+body.dark-mode #practice-stats p {
+    color: #fff; /* White text */
+}
+
+body.dark-mode #practice-text-to-translate {
+    color: #4a90e2; /* Primary blue color */
+}
+
+body.dark-mode #practice-user-input {
+    background-color: #3d3d3d; /* Dark background for input */
+    color: #fff; /* White text */
+    border-color: #666; /* Darker border */
+}
+
+body.dark-mode #practice-user-input:focus {
+    border-color: #6c757d; /* Highlight input on focus */
+    box-shadow: 0 0 5px rgba(108, 117, 125, 0.5); /* Glow effect on focus */
+}
+
+body.dark-mode .practice-progress-bar {
+    background: #444; /* Darker grey for progress bar */
+}
+
+body.dark-mode .practice-progress {
+    background: #28a745; /* Green for progress */
+}
+
+body.dark-mode .practice-stats p {
+    color: #fff;
 }
 

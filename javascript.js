@@ -264,7 +264,6 @@ document.getElementById(
 ).style.width = `${percentageCorrect}%`;
 }
 
-// Enable/disable submit button based on input
 document
 .getElementById("user-input")
 .addEventListener("input", function () {
@@ -272,7 +271,6 @@ document
     submitButton.disabled = this.value.trim() === "";
 });
 
-// Allow Enter key to submit the translation
 document
 .getElementById("user-input")
 .addEventListener("keypress", function (event) {
