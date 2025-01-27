@@ -276,7 +276,7 @@ document.getElementById("practice-user-input").addEventListener("input", functio
 function signOut() {
     firebase.auth().signOut()
         .then(() => {
-            window.location.href = 'login.html';
+            window.location.href = 'index.html';
         })
         .catch((error) => {
             console.error('Error signing out:', error);
@@ -288,3 +288,6 @@ const signOutButton = document.createElement('button');
 signOutButton.textContent = 'Sign Out';
 signOutButton.onclick = signOut;
 document.querySelector('#settings-menu').appendChild(signOutButton);
+
+
+loadUserWordBank();
