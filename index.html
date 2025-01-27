@@ -122,23 +122,22 @@
 
         <div id="practice-interface" class="hidden">
           <h2>Practice Mode</h2>
-
           <p id="practice-instruction">Translate the following:</p>
           <div id="practice-text-to-translate"></div>
           <div id="practice-context"></div>
           <p id="practice-result"></p>
           <input
             type="text"
-            id="user-input"
+            id="practice-user-input"
             placeholder="Your translation"
             autocomplete="off"
           />
           <br /><br />
           <div class="practice-letter-buttons">
-            <button onclick="insertLetter('ä')">ä</button>
-            <button onclick="insertLetter('ö')">ö</button>
-            <button onclick="insertLetter('ü')">ü</button>
-            <button onclick="insertLetter('ß')">ß</button>
+            <button onclick="practiceinsertLetter('ä')">ä</button>
+            <button onclick="practiceinsertLetter('ö')">ö</button>
+            <button onclick="practiceinsertLetter('ü')">ü</button>
+            <button onclick="practiceinsertLetter('ß')">ß</button>
           </div>
           <br />
           <button
@@ -148,11 +147,14 @@
           >
             Submit
           </button>
-          <button id="practice-hint-button" onclick="showHint()">Hint</button>
-          <button id="practice-reset-button" onclick="resetGame()">
+          <!-- In the practice interface section -->
+          <button id="practice-hint-button" onclick="practiceShowHint()">
+            Hint
+          </button>
+          <button id="practice-reset-button" onclick="resetPracticeStats()">
             Reset
           </button>
-          <button id="practice-give-up-button" onclick="giveUp()">
+          <button id="practice-give-up-button" onclick="practiceGiveUp()">
             Give Up
           </button>
           <p id="practice-hint-text"></p>
