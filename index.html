@@ -3,211 +3,99 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Translation Practice</title>
-    <link rel="stylesheet" type="text/css" media="screen" href="testing.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    />
+    <title>Login - Translation Practice</title>
+    <style>
+      .container {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+      }
+      .btn {
+        padding: 10px 20px;
+        margin: 5px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .btn-primary {
+        background-color: #007bff;
+        color: white;
+      }
+      .input-field {
+        width: 100%;
+        padding: 8px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/10.8.0/firebase-app-compat.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/10.8.0/firebase-auth-compat.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/10.8.0/firebase-database-compat.min.js"></script>
   </head>
-  <body style="gap: 20px; margin: 50px 0px; margin-right: 20%">
-    <div class="container" style="margin-right: 0px">
-      <div class="tab-bar">
-        <button
-          id="settings-button"
-          class="tab-button"
-          aria-label="Settings"
-          onclick="switchTab(0)"
-        >
-          <span class="icon"><i class="fas fa-cog"></i></span>
-          <span class="text">Settings</span>
+  <body>
+    <div class="container">
+      <h2>Login to Translation Practice</h2>
+      <div id="loginContainer">
+        <button id="googleSignIn" class="btn btn-primary">
+          Sign in with Google
         </button>
-        <button
-          id="bank-button"
-          class="tab-button"
-          aria-label="Bank"
-          onclick="switchTab(1)"
-        >
-          <span class="icon"><i class="fas fa-university"></i></span>
-          <span class="text">Bank</span>
-        </button>
-        <button
-          id="other-button"
-          class="tab-button selected"
-          aria-label="Other"
-          onclick="switchTab(2)"
-        >
-          <span class="icon"><i class="fas fa-search"></i></span>
-          <span class="text">Main</span>
-        </button>
-        <div class="highlight"></div>
-      </div>
-
-      <!-- Main Content -->
-      <div id="main-content">
-        <h1>Translation Practice</h1>
-        <select id="test-select"></select>
-        <p id="instruction">Translate the following:</p>
-        <div id="text-to-translate"></div>
-        <div id="context"></div>
-        <p id="result"></p>
-        <input
-          type="text"
-          id="user-input"
-          placeholder="Your translation"
-          autocomplete="off"
-        />
-        <br /><br />
-        <div class="letter-buttons">
-          <button onclick="insertLetter('ä')">ä</button>
-          <button onclick="insertLetter('ö')">ö</button>
-          <button onclick="insertLetter('ü')">ü</button>
-          <button onclick="insertLetter('ß')">ß</button>
-        </div>
-        <br />
-        <button id="submit-button" onclick="checkTranslation()" disabled>
-          Submit
-        </button>
-        <button id="hint-button" onclick="showHint()">Hint</button>
-        <button id="reset-button" onclick="resetGame()">Reset</button>
-        <button id="give-up-button" onclick="giveUp()">Give Up</button>
-        <p id="hint-text"></p>
-        <p>Total Attempts: <span id="total-count">0</span></p>
-        <p>Percentage Correct: <span id="percentage-correct">0%</span></p>
-        <div class="progress-bar" id="progress-background">
-          <div class="progress" id="progress-bar"></div>
-        </div>
-        <div class="stats">
-          <p>Successful Attempts: <span id="success-count">0</span></p>
-          <p>Failed Attempts: <span id="fail-count">0</span></p>
-        </div>
-      </div>
-
-      <!-- Settings Menu -->
-      <div id="settings-menu" class="hidden">
-        <h2>Settings</h2>
-        <label>
-          <input type="checkbox" id="dark-mode-toggle" /> Dark Mode
-        </label>
-        <br />
-        <br />
-      </div>
-
-      <div id="bank-menu" class="hidden">
-        <h2>Word Bank</h2>
-        <div id="bank-display">
-          <div id="word-bank-list"></div>
-          <button id="add-word-button" onclick="showAddWordForm()">
-            Add Word
-          </button>
-          <div id="add-word-form" class="hidden">
-            <input
-              type="text"
-              id="word-input"
-              placeholder="Word (e.g., Haus)"
-            />
-            <input
-              type="text"
-              id="translation-input"
-              placeholder="Translation (e.g., House)"
-            />
-            <button onclick="addWord()">Add</button>
-            <button onclick="hideAddWordForm()">Cancel</button>
-          </div>
-          <button id="practice-words-button" onclick="startPractice()">
-            Practice Words
-          </button>
-        </div>
-
-        <div id="practice-interface" class="hidden">
-          <h2>Practice Mode</h2>
-          <p id="practice-instruction">Translate the following:</p>
-          <div id="practice-text-to-translate"></div>
-          <div id="practice-context"></div>
-          <p id="practice-result"></p>
-          <input
-            type="text"
-            id="practice-user-input"
-            placeholder="Your translation"
-            autocomplete="off"
-          />
-          <br /><br />
-          <div class="practice-letter-buttons">
-            <button onclick="practiceinsertLetter('ä')">ä</button>
-            <button onclick="practiceinsertLetter('ö')">ö</button>
-            <button onclick="practiceinsertLetter('ü')">ü</button>
-            <button onclick="practiceinsertLetter('ß')">ß</button>
-          </div>
-          <br />
-          <button
-            id="practice-submit-button"
-            onclick="checkTranslation()"
-            disabled
-          >
-            Submit
-          </button>
-          <!-- In the practice interface section -->
-          <button id="practice-hint-button" onclick="practiceShowHint()">
-            Hint
-          </button>
-          <button id="practice-reset-button" onclick="resetPracticeStats()">
-            Reset
-          </button>
-          <button id="practice-give-up-button" onclick="practiceGiveUp()">
-            Give Up
-          </button>
-          <p id="practice-hint-text"></p>
-          <p>Total Attempts: <span id="practice-total-count">0</span></p>
-          <p>
-            Percentage Correct: <span id="practice-percentage-correct">0%</span>
-          </p>
-          <div class="practice-progress-bar" id="practice-progress-background">
-            <div class="practice-progress" id="practice-progress-bar"></div>
-          </div>
-          <div class="practice-stats">
-            <p>
-              Successful Attempts: <span id="practice-success-count">0</span>
-            </p>
-            <p>Failed Attempts: <span id="practice-fail-count">0</span></p>
-          </div>
-          <button id="back-button" onclick="returnToWordBank()">
-            Back to Bank
-          </button>
-        </div>
       </div>
     </div>
 
-    <div style="display: flex; flex-direction: column; gap: 15px">
-      <div
-        class="container"
-        style="max-width: 17rem; height: 7rem; margin-bottom: 0px"
-      >
-        <div id="timer-display">05:00</div>
-        <div class="timer-controls">
-          <button id="start-timer">Start</button>
-          <button id="pause-timer">Pause</button>
-          <button id="reset-timer">Reset</button>
-          <button id="mode-toggle">Stopwatch</button>
-        </div>
-        <div class="progress-bar">
-          <div id="timer-progress" class="progress"></div>
-        </div>
-      </div>
-      <div
-        class="container"
-        style="max-width: 17rem; height: 7rem; margin-top: 0px"
-      >
-        Last answer
-        <h2
-          id="last-answer"
-          style="color: green; margin: 0; margin-bottom: 7%"
-        ></h2>
-        Context
-        <h2 id="last-question" style="color: red; margin: 0"></h2>
-      </div>
-    </div>
-    <script src="javascript.js"></script>
-    <script src="testing.js"></script>
+    <script>
+      // Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyBy1-0pksc3S3nkQFrLa-fNGvOtdnpJegw",
+        authDomain: "repetefloent.firebaseapp.com",
+        databaseURL: "https://repetefloent-default-rtdb.firebaseio.com",
+        projectId: "repetefloent",
+        storageBucket: "repetefloent.firebasestorage.app",
+        messagingSenderId: "1028859213555",
+        appId: "1:1028859213555:web:81e5fd31e107504d162986",
+        measurementId: "G-N5P1GY5ZCV",
+      };
+
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      const auth = firebase.auth();
+      const database = firebase.database();
+
+      // Google Auth Provider
+      const provider = new firebase.auth.GoogleAuthProvider();
+
+      // Sign in with Google
+      document.getElementById("googleSignIn").addEventListener("click", () => {
+        auth
+          .signInWithPopup(provider)
+          .then((result) => {
+            const user = result.user;
+            // Create or update user data in the database
+            return database.ref("users/" + user.uid).set({
+              email: user.email,
+              lastLogin: new Date().toISOString(),
+              wordBank: [], // Initialize empty word bank if new user
+            });
+          })
+          .then(() => {
+            // Redirect to main application
+            window.location.href = "main.html";
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            alert("Error signing in: " + error.message);
+          });
+      });
+
+      // Check auth state
+      auth.onAuthStateChanged((user) => {
+        if (user) {
+          // If already logged in, redirect to main page
+          window.location.href = "main.html";
+        }
+      });
+    </script>
   </body>
 </html>
