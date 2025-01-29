@@ -6,7 +6,12 @@ let practiceFailCount = 0;
 let practiceTotalAttempts = 0;
 let currentPracticeWord = null;
 let practiceAttempts = 0;
-  
+
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
@@ -154,7 +159,7 @@ function nextPracticeWord() {
     });
 
     weightedWords.sort((a, b) => b.weight - a.weight);
-    currentPracticeWord = weightedWords[0].word;
+    currentPracticeWord = weightedWords[getRandomInt(0, wordBank.length)].word;
     practiceAttempts = 0;
 
     document.getElementById('practice-text-to-translate').textContent = currentPracticeWord.word;
@@ -183,6 +188,11 @@ async function checkPracticeTranslation() {
     }
 }
 
+function handleNext() {
+    updatePracticeStats();
+    nextPracticeWord();
+}
+
 function handleCorrectAnswer() {
     document.getElementById('last-answer').textContent = currentPracticeWord.translation;
     document.getElementById('last-question').textContent = currentPracticeWord.word;
@@ -192,6 +202,7 @@ function handleCorrectAnswer() {
     document.getElementById('practice-result').textContent = 'Correct!';
     document.getElementById('practice-result').className = 'success';
     document.getElementById('practice-user-input').value = '';
+    handleNext();
 }
 
 function handleIncorrectAnswer(correctTranslation) {
@@ -206,6 +217,7 @@ function handleIncorrectAnswer(correctTranslation) {
         document.getElementById('practice-result').className = 'error';
         document.getElementById('practice-fail-count').textContent = practiceFailCount;
         document.getElementById('practice-progress-background').classList.add('incorrect');
+        handleNext();
     } else {
         document.getElementById('practice-result').textContent = 'Incorrect. Try again.';
         document.getElementById('practice-result').className = 'error';
@@ -241,16 +253,14 @@ async function practiceGiveUp() {
     if (currentPracticeWord) {
         practiceFailCount++;
         practiceTotalAttempts++;
-        currentPracticeWord.attempts++;
-        currentPracticeWord.lastPracticed = new Date().toISOString();
         
-        await saveWordBank();
+        // await saveWordBank();
         
         document.getElementById('practice-result').textContent = 
             `The correct translation is "${currentPracticeWord.translation}".`;
         document.getElementById('practice-result').className = 'error';
-        updatePracticeStats();
-        nextPracticeWord();
+        
+        handleNext()
     }
 }
 
@@ -286,6 +296,7 @@ function signOut() {
 // Add sign out button to settings menu
 const signOutButton = document.createElement('button');
 signOutButton.textContent = 'Sign Out';
+signOutButton.classList.add("sign-out-button")
 signOutButton.onclick = signOut;
 document.querySelector('#settings-menu').appendChild(signOutButton);
 

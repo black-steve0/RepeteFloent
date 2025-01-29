@@ -4,7 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Translation Practice</title>
-    <link rel="stylesheet" type="text/css" media="screen" href="testing.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="word_bank.css"
+    />
     <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
     <link
       rel="stylesheet"
@@ -85,13 +90,13 @@
       </div>
 
       <!-- Settings Menu -->
-      <div id="settings-menu" class="hidden">
+      <div id="settings-menu">
         <h2>Settings</h2>
-        <label>
-          <input type="checkbox" id="dark-mode-toggle" /> Dark Mode
+        <label style="display: flex;">
+          <input type="checkbox" id="dark-mode-toggle" />
+          <span class="toggle-switch"></span>
+          Enable Dark Mode
         </label>
-        <br />
-        <br />
       </div>
 
       <div id="bank-menu" class="hidden">
@@ -224,6 +229,6 @@
       };
     </script>
     <script src="javascript.js"></script>
-    <script src="testing.js"></script>
+    <script src="word_bank.js"></script>
   </body>
 </html>
