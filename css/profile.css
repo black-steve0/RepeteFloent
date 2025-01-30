@@ -1,0 +1,34 @@
+
+.streak-container {
+  text-align: center;
+  margin: 0px 0;
+}
+
+.streak-progress-bar {
+  margin-top: -10px;
+  width: 100%;
+  height: 13px;
+  background-color: #e0e0e0; /* Light gray background */
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.streak-progress {
+  height: 100%;
+  background: linear-gradient(90deg, #ff7e5f,#ff7e5f, #feb47b);
+  border-radius: 10px;
+  transition: width 0.5s ease;
+}
+
+.streak-count {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+body.dark-mode .streak-count {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
+}

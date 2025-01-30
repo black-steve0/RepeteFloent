@@ -1,4 +1,6 @@
-// Firebase Auth and Database state
+
+// import { streakAchieved } from "./javascript.js";
+
 let currentUser = null;
 let wordBank = [];
 let practiceSuccessCount = 0;
@@ -22,7 +24,7 @@ firebase.auth().onAuthStateChanged((user) => {
         currentUser = user;
         loadUserWordBank();
     } else {
-        window.location.href = 'login.html';
+        window.location.href = 'index.html';
     }
 });
 
@@ -58,7 +60,6 @@ async function saveWordBank() {
     }
 }
 
-// Word Bank Display Functions
 function displayWordBank() {
     updateWordBankList();
 }
@@ -124,7 +125,6 @@ async function removeWord(index) {
     updateWordBankList();
 }
 
-// Practice Functions
 function startPractice() {
     if (wordBank.length === 0) {
         alert('No words in the word bank to practice.');
@@ -183,7 +183,7 @@ async function checkPracticeTranslation() {
     await saveWordBank();
     
     updatePracticeStats();
-    if (practiceAttempts >= 2) {
+    if (practiceAttempts > 2) {
         nextPracticeWord();
     }
 }
@@ -193,7 +193,11 @@ function handleNext() {
     nextPracticeWord();
 }
 
-function handleCorrectAnswer() {
+async function handleCorrectAnswer() {
+
+    updateCorrect()
+
+    streakUp()
     document.getElementById('last-answer').textContent = currentPracticeWord.translation;
     document.getElementById('last-question').textContent = currentPracticeWord.word;
     practiceTotalAttempts++;
@@ -205,9 +209,77 @@ function handleCorrectAnswer() {
     handleNext();
 }
 
-function handleIncorrectAnswer(correctTranslation) {
+async function updateCorrect() {
+    const snapshot = await firebase.database()
+        .ref('users/' + currentUser.uid + '/attempts')
+        .once('value');
+    const streakData = snapshot.val();
+    let count = streakData?.correctAnswers || null;
+    count++
+    
+    firebase.database().ref('users/' + currentUser.uid + '/attempts/correctAnswers').set(count);
+    handleAttempt()
+}
+
+async function updateIncorrect() {
+    const snapshot = await firebase.database()
+        .ref('users/' + currentUser.uid + '/attempts')
+        .once('value');
+    const streakData = snapshot.val();
+    let count = streakData?.incorrectAnswers || null;
+    count++
+
+    firebase.database()
+        .ref('users/' + currentUser.uid + '/attempts/incorrectAnswers')
+        .set(count);
+    handleAttempt()
+}
+
+async function handleAttempt() {
+    const snapshot = await firebase.database()
+        .ref('users/' + currentUser.uid + '/attempts')
+        .once('value');
+    const streakData = snapshot.val();
+    let count = streakData?.attempts || null;
+
+    firebase.database()
+        .ref('users/' + currentUser.uid + '/attempts/attempts')
+        .set(count+1);
+    count++;
+
+    const snapshotcorrect = await firebase.database()
+        .ref('users/' + currentUser.uid + '/attempts')
+        .once('value');
+    const streakDatacorrect = snapshotcorrect.val();
+    let correct = streakDatacorrect?.correctAnswers || null;
+
+    
+    const snapshotincorrect = await firebase.database()
+        .ref('users/' + currentUser.uid + '/attempts')
+        .once('value');
+    const streakDataincorrect = snapshotincorrect.val();
+    let incorrect = streakDataincorrect?.incorrectAnswers || null;
+
+
+    const newData = {
+        labels: ["Incorrect", "Correct", "No attempts"],
+        datasets: [{
+            data: [incorrect, correct, count-correct-incorrect],
+            backgroundColor: ["#dc3545", "#28a745", "#666"],
+        }],
+    };
+    
+    pieChart.data = newData;
+
+    // Re-render the chart
+    pieChart.update({ duration: 0 });
+}
+
+async function handleIncorrectAnswer(correctTranslation) {
     practiceAttempts++;
-    if (practiceAttempts >= 2) {
+    if (practiceAttempts > 2) {
+        updateIncorrect()
+
         document.getElementById('last-answer').textContent = correctTranslation;
         document.getElementById('last-question').textContent = currentPracticeWord.word;
         practiceTotalAttempts++;
@@ -251,6 +323,7 @@ function practiceShowHint() {
 
 async function practiceGiveUp() {
     if (currentPracticeWord) {
+        handleAttempt()
         practiceFailCount++;
         practiceTotalAttempts++;
         
@@ -302,3 +375,61 @@ document.querySelector('#settings-menu').appendChild(signOutButton);
 
 
 loadUserWordBank();
+
+firebase.initializeApp(firebaseConfig);
+
+// Google Auth Provider
+const provider = new firebase.auth.GoogleAuthProvider();
+
+  
+  // Function to update the profile button with user data
+  function updateProfileButton(user) {
+    const userAvatar = document.getElementById("user-avatar");
+    const userEmail = document.getElementById("user-email");
+  
+    if (user.photoURL) {
+      userAvatar.src = user.photoURL; // Set the user's profile picture
+    }
+    if (user.email) {
+      userEmail.textContent = user.displayName; // Set the user's email
+    }
+  }
+  
+  // Check auth state
+  auth.onAuthStateChanged((user) => {
+    if (user) {
+      updateProfileButton(user); // Update the profile button if the user is already logged in
+    }
+  });
+
+  async function streakUp() {
+    const snapshot = await firebase.database()
+    .ref('users/' + currentUser.uid + '/streak/requirements')
+    .once('value');
+  const data = snapshot.val();
+
+  const today = new Date().toISOString().split("T")[0];
+  const lastActivity = data?.lastActivity || null;
+  let practiced = data?.practiced || 0;
+
+  if (lastActivity !== today) {
+    firebase.database()
+        .ref('users/' + currentUser.uid + '/streak/requirements/lastActivity')
+        .set(today.toString());
+        firebase.database()
+        .ref('users/' + currentUser.uid + '/streak/requirements/practiced')
+        .set(0);
+        practiced = 0;
+  }
+  practiced++
+
+  firebase.database()
+        .ref('users/' + currentUser.uid + '/streak/requirements/practiced')
+        .set(practiced);
+
+    document.getElementById("quest-1").textContent = practiced;
+    console.log(practiced >= document.getElementById("quest-1-min").textContent)
+  if (practiced == parseInt(document.getElementById("quest-1-min").textContent)-1) {
+    localStorage.setItem("streakachieved", "true");
+  }
+}
