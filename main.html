@@ -8,16 +8,61 @@
       rel="stylesheet"
       type="text/css"
       media="screen"
-      href="word_bank.css"
+      href="css/word_bank.css"
     />
-    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="css/style.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="css/profile.css"
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
   </head>
   <body style="gap: 20px; margin: 50px 0px; margin-right: 20%">
-    <div class="container" style="margin-right: 0px">
+    <div
+      style="
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-left: auto;
+      "
+    >
+      <div
+        class="container"
+        style="max-width: 17rem; height: 7rem; margin-bottom: 50px; height: 100%;"
+      >
+        <div style="margin: 0px auto">
+          <button id="profile-button">
+            <img id="user-avatar" alt="Profile" width="30" height="30" style="border-radius: 100%;"/>
+            <span id="user-email">Profile</span>
+          </button>
+          <div class="streak-container">
+            <div style="display: flex">
+              <h3 style="margin-left: auto 0px;">Daily Streak:</h3>
+              <h3 class="streak-count" style="margin-left: auto;">0 days</h3>
+            </div>
+            <div class="streak-progress-bar">
+              <div class="streak-progress" style="width: 0%"></div>
+            </div>
+          </div>
+        </div>
+        <canvas id="pieChart" width="400" height="400"></canvas>
+        <br><br>
+        <div style="text-align: left;"><h3>Streak requirement:</h3>
+          <h4 style="display: flex" id="quest">Correct words: <div id="quest-1">0</div> /<div id="quest-1-min">5</div></h4>
+        </div>
+      </div>
+    </div>
+    <div class="container" style="margin-right: 0px; margin-left: 0px">
       <div class="tab-bar">
         <button
           id="settings-button"
@@ -90,9 +135,9 @@
       </div>
 
       <!-- Settings Menu -->
-      <div id="settings-menu">
+      <div id="settings-menu" class="hidden">
         <h2>Settings</h2>
-        <label style="display: flex;">
+        <label style="display: flex">
           <input type="checkbox" id="dark-mode-toggle" />
           <span class="toggle-switch"></span>
           Enable Dark Mode
@@ -228,7 +273,9 @@
         measurementId: "G-N5P1GY5ZCV",
       };
     </script>
-    <script src="javascript.js"></script>
-    <script src="word_bank.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="javascript/javascript.js"></script>
+    <script src="javascript/word_bank.js"></script>
+    <script src="javascript/profile.js"></script>
   </body>
 </html>
